@@ -2,3 +2,5 @@
 build
 .gradle
 *.iml
+node_modules
+bower_components

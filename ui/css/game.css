@@ -1,0 +1,16 @@
+#board {
+    border: solid 5px #000000;
+    width: 100%;
+}
+
+.container {
+
+}
+
+#board-holder {
+    margin: auto;  
+}
+
+body {
+    background-color: #073642;
+}

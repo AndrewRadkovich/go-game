@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-public class GoGameApplication
-{
+public class GoGameApplication {
   public static void main(String[] args) {
     new SpringApplicationBuilder(GoGameApplication.class)
         .sources(GamePlayRestController.class)

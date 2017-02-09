@@ -1,0 +1,24 @@
+{
+  "name": "go-game-engine",
+  "description": "Engine to play Go PvP",
+  "main": "index.js",
+  "authors": [
+    "Andrei Radkovich"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Go",
+    "game"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

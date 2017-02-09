@@ -16,4 +16,6 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'showplace'
+rootProject.name = 'go-game'
+include 'rest'
+
