@@ -25,7 +25,7 @@ class Game {
   init() {
     this.eventbus.on('board.clicked', (e) => {
       let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", { x: e.layerX, y: e.layerY });
-      console.log(JSON.stringify(internalCoordinates));
+      this.eventbus.publish('log.debug', ["internalCoordinates", internalCoordinates, 0]);
       this.board.placeStone(internalCoordinates, this.currentPlayerColor)
     });
     this.eventbus.on('player.made.a.move', (stone) => {
@@ -42,20 +42,26 @@ class Game {
   performRules() {
     let rules = this.rules;
     for (let i = 0; i < rules.length; i++) {
-      rules[i](this.board, this.stoneClusters, this.eventbus);
+      this.stoneClusters = rules[i](this.stoneClusters, this.eventbus);
     }
   }
 
   addStoneToCluster(stone) {
-    let mergedCluster = [];
+    let mergedCluster = {
+      closed: true,
+      stones: []
+    }
     let clusteIndexesToMerge = [];
     let clusters = this.stoneClusters[stone.color];
-    clusters.push([{ x: stone.x, y: stone.y }]);
+    clusters.push({
+      closed: true,
+      stones: [{ x: stone.x, y: stone.y }]
+    });
     for (let i = 0; i < clusters.length; i++) {
       let cluster = clusters[i];
-      for (let j = 0; j < cluster.length; j++) {
-        if (this.nearby(stone, cluster[j])) {
-          mergedCluster = mergedCluster.concat(cluster);
+      for (let j = 0; j < cluster.stones.length; j++) {
+        if (this.nearby(stone, cluster.stones[j])) {
+          mergedCluster.stones = mergedCluster.stones.concat(cluster.stones);
           clusteIndexesToMerge.push(i);
           break;
         }
@@ -65,6 +71,7 @@ class Game {
       clusters.splice(clusteIndexesToMerge[i] - i, 1);
     }
     clusters.push(mergedCluster);
+    this.eventbus.publish('log.debug', ["clusters", this.stoneClusters, 2]);
   }
 
   nearby(stone1, stone2) {

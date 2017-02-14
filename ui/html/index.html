@@ -11,6 +11,7 @@
 <script src="../src/game.js"></script>
 <script src="../src/painter.js"></script>
 <script src="../src/rule.js"></script>
+<script src="../src/components/log.js"></script>
 <script>
   'use strict';
   document.addEventListener("DOMContentLoaded", () => {
@@ -25,6 +26,7 @@
     // eventbus.debugEnabled = true;
     const board = new Board(cellNum, eventbus);
     const painter = new Painter(eventbus, canvas).init();
+    const logger = new Logger(eventbus).init();
 
     let boardStyle = boardHolder.style;
     boardStyle.maxHeight = boardStyle.maxWidth = width + "px";
@@ -37,7 +39,7 @@
 
     const game = new Game(board, eventbus)
     .init()
-    .withRules([surrounded])
+    .withRules([surroundedExperimantal])
     .start();
   });
 </script>

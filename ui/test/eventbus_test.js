@@ -93,4 +93,14 @@ describe("EventBus", () => {
 
     eventbus.publish("event1", body);
   });
+
+  it("It should not affect on payload when event has many handlers", () => {
+    const eventbus = new EventBus();
+
+    eventbus.on("event1", (one, two, three) => {
+      console.log(one, two, three);
+    });
+
+    eventbus.publish("event1", [1, 2, 3]);
+  });
 });
