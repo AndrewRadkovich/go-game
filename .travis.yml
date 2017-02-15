@@ -16,7 +16,7 @@ cache:
 
 before_script:
   - git fetch --all
-  - git checkout -b master
+  - git reset --hard origin/master
 
 script:
   - ./gradlew build
