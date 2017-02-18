@@ -22,4 +22,4 @@ script:
   - ./gradlew build
   - cd ui
   - npm install
-  - /node_modules/mocha/bin/mocha test
+  - node_modules/mocha/bin/mocha test
