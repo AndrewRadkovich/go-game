@@ -21,5 +21,6 @@ before_script:
 script:
   - ./gradlew build
   - cd ui
+  - node -v
   - npm install
   - node_modules/mocha/bin/mocha test
