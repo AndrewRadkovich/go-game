@@ -20,4 +20,6 @@ before_script:
 
 script:
   - ./gradlew build
-  - ui/node_modules/mocha/bin/mocha ui/test
+  - cd ui
+  - npm install
+  - /node_modules/mocha/bin/mocha test
