@@ -7,12 +7,12 @@ class Game {
     this.stoneClusters = {
       "black": [],
       "white": []
-    }
+    };
     this.currentPlayerColor = 'black';
     this.moveTransition = {
       "black": "white",
       "white": "black"
-    }
+    };
     this.rules = [];
   }
 
@@ -50,7 +50,7 @@ class Game {
     let mergedCluster = {
       closed: true,
       stones: []
-    }
+    };
     let clusteIndexesToMerge = [];
     let clusters = this.stoneClusters[stone.color];
     clusters.push({

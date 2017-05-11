@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Go game</title>
+    <title>Go game</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../css/game.css">
 <script src="../src/utils.js"></script>
@@ -18,13 +18,14 @@
 
     const width = 500;
     const cellNum = 19;
+    const margin = (width / 2) / (cellNum + 1);
 
     let canvas = document.getElementById("board");
     let boardHolder = document.getElementById("board-holder");
 
     const eventbus = new EventBus();
     // eventbus.debugEnabled = true;
-    const board = new Board(cellNum, eventbus);
+    const board = new Board(cellNum, margin, eventbus);
     const painter = new Painter(eventbus, canvas).init();
     const logger = new Logger(eventbus).init();
 
@@ -32,22 +33,20 @@
     boardStyle.maxHeight = boardStyle.maxWidth = width + "px";
     boardStyle.minHeight = boardStyle.minWidth = (width / 1.5) + "px";
     canvas.height = canvas.width = width;
-    
-    canvas.addEventListener('click', function(e) {
-      eventbus.publish('board.clicked', {layerX: e.layerX, layerY: e.layerY});
-    }, false);
 
-    const game = new Game(board, eventbus)
-    .init()
-    .withRules([surroundedExperimantal])
-    .start();
+    canvas.addEventListener('click', (e) => eventbus.publish('board.clicked', {
+      layerX: e.layerX,
+      layerY: e.layerY
+    }), false);
+
+    new Game(board, eventbus).init().withRules([surroundedExperimantal]).start();
   });
 </script>
 
 <body>
-  <div id="board-holder">
+<div id="board-holder">
     <canvas id="board"></canvas>
-  </div>
+</div>
 </body>
 
 </html>

@@ -59,21 +59,22 @@ class Painter {
 
   drawBoard(board) {
     const width = this.canvas.width;
+    const margin = board.margin;
 
     this.board = board;
-    this.cellWidth = width / this.board.cellNum;
+    this.cellWidth = (width - margin * 2) / this.board.cellNum;
 
     let ctx = this.canvas.getContext("2d");
     ctx.fillStyle = this.backgroundColor;
     ctx.fillRect(0, 0, width, width);
 
-    for (let i = this.cellWidth; i < board.cellNum * this.cellWidth; i += this.cellWidth) {
-      ctx.moveTo(0, i);
-      ctx.lineTo(width, i);
+    for (let i = this.cellWidth - margin * 1; i < (board.cellNum + 1) * this.cellWidth + margin; i += this.cellWidth) {
+      ctx.moveTo(margin, i);
+      ctx.lineTo(width - margin, i);
       ctx.stroke();
 
-      ctx.moveTo(i, 0);
-      ctx.lineTo(i, width);
+      ctx.moveTo(i, margin);
+      ctx.lineTo(i, width - margin);
       ctx.stroke();
     }
   }
@@ -95,8 +96,8 @@ class Painter {
   drawStone(x, y, color) {
     let ctx = this.canvas.getContext("2d");
 
-    x = x * this.cellWidth;
-    y = y * this.cellWidth;
+    x = (x - 1) * this.cellWidth + this.board.margin;
+    y = (y - 1) * this.cellWidth + this.board.margin;
 
     let stoneRadius = this.cellWidth * 0.45;
 

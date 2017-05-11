@@ -1,8 +1,9 @@
 'use strict';
 
 class Board {
-  constructor(cellNum, eventbus) {
+  constructor(cellNum, margin, eventbus) {
     this.cellNum = cellNum;
+    this.margin = margin;
     this.busyPlaces = [];
     this.eventbus = eventbus;
     this.stones = {

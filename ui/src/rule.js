@@ -11,7 +11,7 @@ function deepDebug(obj, space) {
 const opponent = {
   "black": "white",
   "white": "black"
-}
+};
 
 const surroundedExperimantal = (clusters, eventbus) => {
   const clustersCopy = JSON.parse(JSON.stringify(clusters));
@@ -25,15 +25,15 @@ const surroundedExperimantal = (clusters, eventbus) => {
             opponentCluster.stones.forEach(row => {
               if (point.x === row.x) row.y = row.y.filter(value => point.y.indexOf(value) === -1);
             });
-            opponentCluster.stones = opponentCluster.stones.filter(row => row.y.length != 0);
+            opponentCluster.stones = opponentCluster.stones.filter(row => row.y.length !== 0);
           });
         });
-        clustersCopy[opponent[color]] = clustersCopy[opponent[color]].filter(cluster => cluster.stones.length != 0);
+        clustersCopy[opponent[color]] = clustersCopy[opponent[color]].filter(cluster => cluster.stones.length !== 0);
         return clustersCopy;
       });
   });
   return clustersCopy;
-}
+};
 
 function searchSuspiciousPoints(cluster) {
   let suspiciousPoints = [];
@@ -71,16 +71,15 @@ const hasEmptyCellsNearby = (stones, stone) => {
     }
   }
   return requiredAmountOfNeighbour > neighbourCounter;
-}
+};
 
 const nearby = (stone1, stone2) => {
   let dX = Math.abs(stone1.x - stone2.x);
   let dY = Math.abs(stone1.y - stone2.y);
   let equal = dX === 0 && dY === 0;
   let d = dX === 1 && dY === 1;
-  let result = !equal && !d && ((dX === 1 && (dY === 0 || dY === 1)) || dX === 0 && (dY === 0 || dY === 1));
-  return result;
-}
+  return !equal && !d && ((dX === 1 && (dY === 0 || dY === 1)) || dX === 0 && (dY === 0 || dY === 1));
+};
 
 exports.nearby = nearby;
 exports.hasEmptyCellsNearby = hasEmptyCellsNearby;
