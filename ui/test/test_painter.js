@@ -16,9 +16,33 @@ describe("Painter", () => {
     assert.deepEqual(expectedPoint, painter.fromRealToSimple(point));
   });
 
-  it("their , It should convert real coordinates tinternal representation", () => {
+  it("It should convert real coordinates to internal representation", () => {
     const eventbus = new EventBus();
     const painter = new Painter(eventbus, 10, null);
+    painter.cellWidth = 50;
+
+    const point = {x: 20, y: 20};
+    const expectedPoint = {x: 0, y: 0};
+
+    assert.deepEqual(expectedPoint, painter.fromRealToSimple(point));
+  });
+
+  it("It should convert real coordinates to internal representation", () => {
+    const eventbus = new EventBus();
+    const margin = 50;
+    const painter = new Painter(eventbus, margin, null);
+    painter.cellWidth = 50;
+
+    const point = {x: 20, y: 20};
+    const expectedPoint = {x: 0, y: 0};
+
+    assert.deepEqual(expectedPoint, painter.fromRealToSimple(point));
+  });
+
+  it("It should convert real coordinates to internal representation", () => {
+    const eventbus = new EventBus();
+    const margin = 50;
+    const painter = new Painter(eventbus, margin, null);
     painter.cellWidth = 50;
 
     const point = {x: 20, y: 20};

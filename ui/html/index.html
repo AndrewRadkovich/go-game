@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Go game</title>
+	<title>Go game</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../css/game.css">
 <script src="../src/utils.js"></script>
@@ -25,8 +25,8 @@
 
     const eventbus = new EventBus();
     // eventbus.debugEnabled = true;
-    const board = new Board(cellNum - 1, margin, eventbus);
-    const painter = new Painter(eventbus, canvas).init();
+    const board = new Board(cellNum - 1, margin, eventbus);    
+    const painter = new Painter(eventbus, margin, canvas).init();
     const logger = new Logger(eventbus).init();
 
     let boardStyle = boardHolder.style;
@@ -44,9 +44,9 @@
 </script>
 
 <body>
-<div id="board-holder">
-    <canvas id="board"></canvas>
-</div>
+	<div id="board-holder">
+		<canvas id="board"></canvas>
+	</div>
 </body>
 
 </html>

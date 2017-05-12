@@ -81,9 +81,14 @@ class Painter {
   }
 
   fromRealToSimple(point) {
+    let x = Math.round((point.x - this.margin) / this.cellWidth);
+    let y = Math.round((point.y - this.margin) / this.cellWidth);
+    let cellNum = this.board.cellNum;
+    x = x > cellNum ? cellNum : x;
+    y = y > cellNum ? cellNum : y;
     return {
-      x: Math.round((point.x - this.margin) / this.cellWidth),
-      y: Math.round((point.y - this.margin) / this.cellWidth)
+      x: x < 0 ? 0 : x,
+      y: y < 0 ? 0 : y
     }
   }
 
@@ -96,19 +101,16 @@ class Painter {
 
   drawStone(x, y, color) {
     let ctx = this.canvas.getContext("2d");
-
-    x = (x - 1) * this.cellWidth + this.board.margin;
-    y = (y - 1) * this.cellWidth + this.board.margin;
-
+    let p = this.fromSimpleToReal(x, y);
     let stoneRadius = this.cellWidth * 0.45;
 
-    let grd = ctx.createRadialGradient(x, y, stoneRadius * 0.6, x, y, stoneRadius);
+    let grd = ctx.createRadialGradient(p.x, p.y, stoneRadius * 0.6, p.x, p.y, stoneRadius);
     let gradientColors = this.stoneColors[color];
     grd.addColorStop(0, gradientColors[0]);
     grd.addColorStop(1, gradientColors[1]);
 
     ctx.beginPath();
-    ctx.arc(x, y, stoneRadius, 2 * Math.PI, false);
+    ctx.arc(p.x, p.y, stoneRadius, 2 * Math.PI, false);
     ctx.fillStyle = grd;
     ctx.fill();
     ctx.lineWidth = 1;
