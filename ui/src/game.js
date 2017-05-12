@@ -24,7 +24,7 @@ class Game {
 
   init() {
     this.eventbus.on('board.clicked', (e) => {
-      let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", { x: e.layerX, y: e.layerY });
+      let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", {x: e.layerX, y: e.layerY});
       this.eventbus.publish('log.debug', ["internalCoordinates", internalCoordinates, 0]);
       this.board.placeStone(internalCoordinates, this.currentPlayerColor)
     });
@@ -55,7 +55,7 @@ class Game {
     let clusters = this.stoneClusters[stone.color];
     clusters.push({
       closed: true,
-      stones: [{ x: stone.x, y: stone.y }]
+      stones: [{x: stone.x, y: stone.y}]
     });
     for (let i = 0; i < clusters.length; i++) {
       let cluster = clusters[i];

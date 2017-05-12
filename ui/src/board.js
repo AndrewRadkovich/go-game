@@ -18,7 +18,7 @@ class Board {
 
   placeStone(nearest, color) {
     if (this.isNotBusyPlace(nearest.x, nearest.y)) {
-      this.busyPlaces.push(nearest.x + ':' + nearest.y)
+      this.busyPlaces.push(nearest.x + ':' + nearest.y);
       this.stones[color].push({
         x: nearest.x,
         y: nearest.y

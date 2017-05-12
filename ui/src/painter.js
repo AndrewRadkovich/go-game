@@ -1,9 +1,10 @@
 'use strict';
 
 class Painter {
-  constructor(eventbus, canvas) {
+  constructor(eventbus, margin, canvas) {
     this.eventbus = eventbus;
     this.canvas = canvas;
+    this.margin = margin;
     this.backgroundColor = "rgb(210,144,29)";
     this.stoneColors = {
       "black": ["#292929", "black"],
@@ -59,7 +60,7 @@ class Painter {
 
   drawBoard(board) {
     const width = this.canvas.width;
-    const margin = board.margin;
+    const margin = this.margin;
 
     this.board = board;
     this.cellWidth = (width - margin * 2) / this.board.cellNum;
@@ -81,15 +82,15 @@ class Painter {
 
   fromRealToSimple(point) {
     return {
-      x: Math.round(point.x / this.cellWidth),
-      y: Math.round(point.y / this.cellWidth)
+      x: Math.round((point.x - this.margin) / this.cellWidth),
+      y: Math.round((point.y - this.margin) / this.cellWidth)
     }
   }
 
   fromSimpleToReal(x, y) {
     return {
-      x: x * this.cellWidth,
-      y: y * this.cellWidth
+      x: x * this.cellWidth + this.margin,
+      y: y * this.cellWidth + this.margin
     }
   }
 

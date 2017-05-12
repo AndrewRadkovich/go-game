@@ -25,7 +25,7 @@
 
     const eventbus = new EventBus();
     // eventbus.debugEnabled = true;
-    const board = new Board(cellNum, margin, eventbus);
+    const board = new Board(cellNum - 1, margin, eventbus);
     const painter = new Painter(eventbus, canvas).init();
     const logger = new Logger(eventbus).init();
 
