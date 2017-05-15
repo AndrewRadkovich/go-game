@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const EventBus = require('../src/eventbus').EventBus;
 const assert = require('chai').assert;

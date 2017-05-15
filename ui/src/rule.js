@@ -84,3 +84,4 @@ const nearby = (stone1, stone2) => {
 exports.nearby = nearby;
 exports.hasEmptyCellsNearby = hasEmptyCellsNearby;
 exports.surroundedExperimantal = surroundedExperimantal;
+exports.searchSuspiciousPoints = searchSuspiciousPoints;

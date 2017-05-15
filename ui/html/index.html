@@ -11,6 +11,7 @@
 <script src="../src/game.js"></script>
 <script src="../src/painter.js"></script>
 <script src="../src/rule.js"></script>
+<script src="../src/rules.js"></script>
 <script src="../src/components/log.js"></script>
 <script>
   'use strict';
@@ -28,7 +29,8 @@
       .attach(board)
       .attach(new Painter(margin, canvas))
       .attach(new Logger())
-      .attach(new Game(board).withRules([]));
+      .attach(new Rules())
+      .attach(new Game(board));
 
     let boardStyle = boardHolder.style;
     boardStyle.maxHeight = boardStyle.maxWidth = width + "px";

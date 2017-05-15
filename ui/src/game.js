@@ -15,12 +15,6 @@ class Game {
     this.rules = [];
   }
 
-  withRules(rules) {
-    console.log(JSON.stringify(rules));
-    this.rules = rules;
-    return this;
-  }
-
   wireTo(eventbus) {
     this.eventbus = eventbus;
     this.eventbus.on('game.start', (e) => {
@@ -34,19 +28,12 @@ class Game {
     this.eventbus.on('player.made.a.move', (stone) => {
       this.addStoneToCluster(stone);
       this.switchPlayer();
-      this.performRules();
+      this.eventbus.publish('rules.perform', this.board);
     });
     this.eventbus.on('notify.player', (payload) => {
       console.log(payload);
     });
     return this;
-  }
-
-  performRules() {
-    let rules = this.rules;
-    for (let i = 0; i < rules.length; i++) {
-      this.stoneClusters = rules[i](this.stoneClusters, this.eventbus);
-    }
   }
 
   addStoneToCluster(stone) {
@@ -88,7 +75,7 @@ class Game {
   }
 
   switchPlayer() {
-    this.currentPlayerColor = this.moveTransition[this.currentPlayerColor];
+    this.currentPlayerColor = this.opponentColor();
   }
 
   start() {
