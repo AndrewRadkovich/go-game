@@ -13,11 +13,11 @@ const opponent = {
   "white": "black"
 };
 
-const surroundedExperimantal = (clusters, eventbus) => {
+const surroundedExperimantal = (clusters) => {
   const clustersCopy = JSON.parse(JSON.stringify(clusters));
   ["black", "white"].forEach((color) => {
     clusters[color]
-      .filter(cluster => cluster.closed && cluster.stones.length > 2)
+      .filter(cluster => cluster.stones.length > 2)
       .map(cluster => {
         let suspiciousPoints = searchSuspiciousPoints(cluster);
         clustersCopy[opponent[color]].forEach(opponentCluster => {

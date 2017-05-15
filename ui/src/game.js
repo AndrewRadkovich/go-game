@@ -38,13 +38,11 @@ class Game {
 
   addStoneToCluster(stone) {
     let mergedCluster = {
-      closed: true,
       stones: []
     };
     let clusteIndexesToMerge = [];
     let clusters = this.stoneClusters[stone.color];
     clusters.push({
-      closed: true,
       stones: [{ x: stone.x, y: stone.y }]
     });
     for (let i = 0; i < clusters.length; i++) {
