@@ -1,8 +1,8 @@
 'use strict';
 
 class Painter {
-  constructor(eventbus, margin, canvas) {
-    this.eventbus = eventbus;
+  constructor(margin, canvas) {
+    this.eventbus = {};
     this.canvas = canvas;
     this.margin = margin;
     this.backgroundColor = "rgb(210,144,29)";
@@ -69,7 +69,7 @@ class Painter {
     ctx.fillStyle = this.backgroundColor;
     ctx.fillRect(0, 0, width, width);
 
-    for (let i = this.cellWidth - margin * 1; i < (board.cellNum + 1) * this.cellWidth + margin; i += this.cellWidth) {
+    for (let i = this.cellWidth - margin - 1; i < (board.cellNum + 1) * this.cellWidth + margin; i += this.cellWidth) {
       ctx.moveTo(margin, i);
       ctx.lineTo(width - margin, i);
       ctx.stroke();

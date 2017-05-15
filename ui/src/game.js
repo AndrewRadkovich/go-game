@@ -1,9 +1,9 @@
 'use strict';
 
 class Game {
-  constructor(board, eventbus) {
+  constructor(board) {
     this.board = board;
-    this.eventbus = eventbus;
+    this.eventbus = {};
     this.stoneClusters = {
       "black": [],
       "white": []
@@ -23,6 +23,9 @@ class Game {
   }
 
   init() {
+    this.eventbus.on('game.start', (e) => {
+      this.start();
+    });
     this.eventbus.on('board.clicked', (e) => {
       let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", { x: e.layerX, y: e.layerY });
       this.eventbus.publish('log.debug', ["internalCoordinates", internalCoordinates, 0]);

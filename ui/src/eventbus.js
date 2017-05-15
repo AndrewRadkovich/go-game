@@ -34,6 +34,13 @@ class EventBus {
     this.debugEnabled = false;
   }
 
+  attach(component) {
+    component.eventbus = this;
+    console.log(JSON.stringify(component, null, 2));
+    component.init();
+    return this;
+  }
+
   registeredEvents() {
     for (let pr in this.events) {
       console.log(pr);

@@ -1,12 +1,12 @@
 'use strict';
 
 class Logger {
-  constructor(bus) {
-    this.bus = bus;
+  constructor() {
+    this.eventbus = {};
   }
 
   init() {
-    this.bus.on('log.debug', payload => {
+    this.eventbus.on('log.debug', (payload) => {
       deepDebugM(payload[0], payload[1], payload[2]);
     });
   }

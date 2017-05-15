@@ -1,15 +1,19 @@
 'use strict';
 
 class Board {
-  constructor(cellNum, margin, eventbus) {
+  constructor(cellNum, margin) {
     this.cellNum = cellNum;
     this.margin = margin;
     this.busyPlaces = [];
-    this.eventbus = eventbus;
+    this.eventbus = {};
     this.stones = {
       "black": [],
       "white": []
     }
+  }
+
+  init() {
+
   }
 
   isNotBusyPlace(x, y) {
