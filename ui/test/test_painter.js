@@ -6,12 +6,12 @@ const assert = require('chai').assert;
 
 describe("Painter", () => {
   it("It should convert real coordinates to their internal representation", () => {
-    const eventbus = new EventBus();
-    const painter = new Painter(eventbus, 40, null);
+    const painter = new Painter(40, null);
     painter.board = {
       cellNum: 19
-    }
+    };
     painter.cellWidth = 50;
+    new EventBus().attach(painter);
 
     const point = {x: 90, y: 90};
     const expectedPoint = {x: 1, y: 1};
@@ -20,12 +20,12 @@ describe("Painter", () => {
   });
 
   it("It should convert real coordinates to internal representation", () => {
-    const eventbus = new EventBus();
-    const painter = new Painter(eventbus, 10, null);
+    const painter = new Painter(10, null);
     painter.board = {
       cellNum: 19
-    }
+    };
     painter.cellWidth = 50;
+    new EventBus().attach(painter);
 
     const point = {x: 20, y: 20};
     const expectedPoint = {x: 0, y: 0};
@@ -34,13 +34,13 @@ describe("Painter", () => {
   });
 
   it("It should convert real coordinates to internal representation", () => {
-    const eventbus = new EventBus();
     const margin = 50;
-    const painter = new Painter(eventbus, margin, null);
+    const painter = new Painter(margin, null);
     painter.board = {
       cellNum: 19
-    }
+    };
     painter.cellWidth = 50;
+    new EventBus().attach(painter);
 
     const point = {x: 20, y: 20};
     const expectedPoint = {x: 0, y: 0};
@@ -49,13 +49,13 @@ describe("Painter", () => {
   });
 
   it("It should convert real coordinates to internal representation", () => {
-    const eventbus = new EventBus();
     const margin = 50;
-    const painter = new Painter(eventbus, margin, null);
+    const painter = new Painter(margin, null);
     painter.board = {
       cellNum: 19
-    }
+    };
     painter.cellWidth = 50;
+    new EventBus().attach(painter);
 
     const point = {x: 20, y: 20};
     const expectedPoint = {x: 0, y: 0};

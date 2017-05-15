@@ -31,7 +31,7 @@ class EventBus {
     this.events = {};
     this.reqres = {};
     this.bridges = [];
-    this.debugEnabled = false;
+    this.logEnabled = false;
   }
 
   attach(component) {
@@ -45,8 +45,14 @@ class EventBus {
     }
   }
 
-  logPayload(eventName, payload) {
+  logD(eventName, payload) {
     console.log(eventName, JSON.stringify(payload, null, 2));
+  }
+
+  logW(message) {
+    if(this.logEnabled) {
+      console.log("WARN :: " + message);
+    }
   }
 
   on(eventName, handler) {
@@ -57,10 +63,10 @@ class EventBus {
   }
 
   publish(eventName, payload) {
-    if (this.debugEnabled) this.logPayload(eventName, payload);
+    if (this.logEnabled) this.logD(eventName, payload);
     const event = this.events[eventName];
     const existence = {
-      "true": () => console.log("WARN :: No event has been registered with name \"" + eventName + "\""),
+      "true": () => this.logW("No event has been registered with name \"" + eventName + "\""),
       "false": () => event.handlers.forEach((handler) => handler(JSON.parse(JSON.stringify(payload))))
     };
     for (let i = 0; i < this.bridges; i++) {
@@ -74,7 +80,7 @@ class EventBus {
     if (reqres === undefined) {
       this.reqres[address] = new RequestResponse(address);
     } else {
-      console.log("WARN :: Handler has been already registered for \"" + address + "\"");
+      this.logW("Handler has been already registered for \"" + address + "\"");
       return this;
     }
     this.reqres[address].registerHandler(handler);
@@ -82,10 +88,10 @@ class EventBus {
   }
 
   send(address, payload) {
-    if (this.debugEnabled) this.logPayload(address, payload);
+    if (this.logEnabled) this.logD(address, payload);
     const reqres = this.reqres[address];
     if (reqres === undefined) {
-      console.log("WARN :: No handler has been registered for \"" + address + "\", return {}");
+      this.logW("No handler has been registered for \"" + address + "\", return {}");
       return {};
     } else {
       return reqres.handler(payload);
