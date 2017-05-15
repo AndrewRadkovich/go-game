@@ -28,7 +28,7 @@
       .attach(board)
       .attach(new Painter(margin, canvas))
       .attach(new Logger())
-      .attach(new Game(board));
+      .attach(new Game(board).withRules([]));
 
     let boardStyle = boardHolder.style;
     boardStyle.maxHeight = boardStyle.maxWidth = width + "px";

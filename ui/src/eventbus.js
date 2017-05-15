@@ -35,9 +35,7 @@ class EventBus {
   }
 
   attach(component) {
-    component.eventbus = this;
-    console.log(JSON.stringify(component, null, 2));
-    component.init();
+    component.wireTo(this);
     return this;
   }
 

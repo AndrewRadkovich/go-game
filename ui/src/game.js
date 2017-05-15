@@ -3,7 +3,6 @@
 class Game {
   constructor(board) {
     this.board = board;
-    this.eventbus = {};
     this.stoneClusters = {
       "black": [],
       "white": []
@@ -22,7 +21,8 @@ class Game {
     return this;
   }
 
-  init() {
+  wireTo(eventbus) {
+    this.eventbus = eventbus;
     this.eventbus.on('game.start', (e) => {
       this.start();
     });
@@ -63,7 +63,7 @@ class Game {
     for (let i = 0; i < clusters.length; i++) {
       let cluster = clusters[i];
       for (let j = 0; j < cluster.stones.length; j++) {
-        if (this.nearby(stone, cluster.stones[j])) {
+        if (Game.nearby(stone, cluster.stones[j])) {
           mergedCluster.stones = mergedCluster.stones.concat(cluster.stones);
           clusteIndexesToMerge.push(i);
           break;
@@ -77,7 +77,7 @@ class Game {
     this.eventbus.publish('log.debug', ["clusters", this.stoneClusters, 2]);
   }
 
-  nearby(stone1, stone2) {
+  static nearby(stone1, stone2) {
     let dX = Math.abs(stone1.x - stone2.x);
     let dY = Math.abs(stone1.y - stone2.y);
     return (dX === 1 && (dY === 0 || dY === 1)) || dX === 0 && (dY === 0 || dY === 1);

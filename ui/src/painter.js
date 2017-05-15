@@ -12,7 +12,8 @@ class Painter {
     }
   }
 
-  init() {
+  wireTo(eventbus) {
+    this.eventbus = eventbus;
     this.eventbus.on("vanish.stones", (stones) => {
       this.vanishStones(stones);
     });

@@ -1,11 +1,9 @@
 'use strict';
 
 class Logger {
-  constructor() {
-    this.eventbus = {};
-  }
 
-  init() {
+  wireTo(eventbus) {
+    this.eventbus = eventbus;
     this.eventbus.on('log.debug', (payload) => {
       deepDebugM(payload[0], payload[1], payload[2]);
     });

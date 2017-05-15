@@ -5,15 +5,14 @@ class Board {
     this.cellNum = cellNum;
     this.margin = margin;
     this.busyPlaces = [];
-    this.eventbus = {};
     this.stones = {
       "black": [],
       "white": []
     }
   }
 
-  init() {
-
+  wireTo(eventbus) {
+    this.eventbus = eventbus;
   }
 
   isNotBusyPlace(x, y) {
