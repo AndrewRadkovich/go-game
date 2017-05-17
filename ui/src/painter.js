@@ -17,8 +17,8 @@ class Painter {
     this.eventbus.on("vanish.stones", (stones) => {
       this.vanishStones(stones);
     });
-    this.eventbus.on('player.made.a.move', (payload) => {
-      this.drawStone(payload.x, payload.y, payload.color, payload.stoneRadius);
+    this.eventbus.on('player.made.a.move', (stone) => {
+      this.drawStone(stone.x, stone.y, stone.color, stone.stoneRadius);
     });
     this.eventbus.on('game.started', (board) => {
       this.drawBoard(board);
@@ -70,7 +70,7 @@ class Painter {
     ctx.fillStyle = this.backgroundColor;
     ctx.fillRect(0, 0, width, width);
 
-    for (let i = this.cellWidth - margin - 1; i < (board.cellNum + 1) * this.cellWidth + margin; i += this.cellWidth) {
+    for (let i = this.cellWidth - margin; i < (board.cellNum + 1) * this.cellWidth + margin; i += this.cellWidth) {
       ctx.moveTo(margin, i);
       ctx.lineTo(width - margin, i);
       ctx.stroke();
@@ -84,6 +84,8 @@ class Painter {
   fromRealToSimple(point) {
     let x = Math.round((point.x - this.margin) / this.cellWidth);
     let y = Math.round((point.y - this.margin) / this.cellWidth);
+    console.log("x, y = ", x, y);
+
     let cellNum = this.board.cellNum;
     x = x > cellNum ? cellNum : x;
     y = y > cellNum ? cellNum : y;

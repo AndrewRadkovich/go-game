@@ -68,7 +68,6 @@ describe("Rules (experimantal)", () => {
     let clusters = {
       "black": [
         {
-          closed: true,
           stones: [
             {x: 1, y: [2]},
             {x: 2, y: [1, 3]},
@@ -87,7 +86,6 @@ describe("Rules (experimantal)", () => {
     let clusters = {
       "black": [
         {
-          closed: true,
           stones: [
             {x: 0, y: [3]},
             {x: 1, y: [1, 2, 4]},
@@ -112,7 +110,6 @@ describe("Rules (experimantal)", () => {
     let clusters = {
       "black": [
         {
-          closed: true,
           stones: [
             {x: 0, y: [3]},
             {x: 1, y: [1, 2, 4, 5]},

@@ -23,12 +23,13 @@ class Game {
     this.eventbus.on('board.clicked', (e) => {
       let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", { x: e.layerX, y: e.layerY });
       this.eventbus.publish('log.debug', ["internalCoordinates", internalCoordinates, 0]);
-      this.board.placeStone(internalCoordinates, this.currentPlayerColor)
+      this.eventbus.publish('log.debug', ["real Coordinates", { x: e.layerX, y: e.layerY }, 0]);
+      this.board.placeStone(internalCoordinates, this.currentPlayerColor);
     });
     this.eventbus.on('player.made.a.move', (stone) => {
       this.addStoneToCluster(stone);
       this.switchPlayer();
-      this.eventbus.publish('rules.perform', this.board);
+      // this.stoneClusters = this.eventbus.send('rules.perform', this.stoneClusters);
     });
     this.eventbus.on('notify.player', (payload) => {
       console.log(payload);

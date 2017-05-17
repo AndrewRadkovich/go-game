@@ -19,7 +19,8 @@
 
     const width = 500;
     const cellNum = 19;
-    const margin = (width / 2) / (cellNum + 1);
+    const margin = (width / 2) / cellNum;
+    console.log("margin = " + margin);
 
     let canvas = document.getElementById("board");
     let boardHolder = document.getElementById("board-holder");
