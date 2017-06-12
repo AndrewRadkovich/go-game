@@ -59,7 +59,6 @@ class Rules {
     return array;
   }
 
-
   updateScore() {
 
   }

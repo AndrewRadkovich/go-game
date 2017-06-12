@@ -8,7 +8,11 @@
 }
 
 #board-holder {
-    margin: auto;  
+    margin: auto;
+    width: 90%;
+    height: 90%;    
+    max-width: 750px;
+    max-height: 750px;
 }
 
 body {

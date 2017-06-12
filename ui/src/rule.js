@@ -35,6 +35,19 @@ const surroundedExperimantal = (clusters) => {
   return clustersCopy;
 };
 
+function findSurrounded(clusters) {
+  let stonesToRemove = [];
+  ["black", "white"].forEach((color) => {
+    clusters[color]
+      .filter(cluster => cluster.stones.length > 2)
+      .forEach((cluster) => {
+        let suspiciousPoints = searchSuspiciousPoints(cluster);
+        console.log(JSON.stringify(suspiciousPoints, null, 2));
+      });
+  });
+  return stonesToRemove;
+}
+
 function searchSuspiciousPoints(cluster) {
   let suspiciousPoints = [];
   for (let index = 1; index < cluster.stones.length - 1; index++) {
@@ -42,6 +55,7 @@ function searchSuspiciousPoints(cluster) {
     for (let i = 1; i < row.y.length; i++) {
       if (row.y[i] - row.y[i - 1] > 1) {
         suspiciousPoints.push({ x: row.x, y: range(row.y[i - 1], row.y[i]) });
+        // TODO: add each point to clusters
       }
     }
   }
@@ -85,3 +99,4 @@ exports.nearby = nearby;
 exports.hasEmptyCellsNearby = hasEmptyCellsNearby;
 exports.surroundedExperimantal = surroundedExperimantal;
 exports.searchSuspiciousPoints = searchSuspiciousPoints;
+exports.findSurrounded = findSurrounded;
