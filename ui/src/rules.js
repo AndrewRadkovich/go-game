@@ -63,3 +63,5 @@ class Rules {
 
   }
 }
+
+module.exports.Rules = Rules;

@@ -99,4 +99,4 @@ class EventBus {
   }
 }
 
-exports.EventBus = EventBus;
+module.exports.EventBus = EventBus;

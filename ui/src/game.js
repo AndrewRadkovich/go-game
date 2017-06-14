@@ -1,6 +1,6 @@
 'use strict';
 
-// import log from "utils/log";
+import log from "./utils";
 
 class Game {
   constructor(board) {
@@ -23,12 +23,10 @@ class Game {
       this.start();
     });
     this.eventbus.on('board.clicked', (e) => {
-      let realCoords = {x: e.layerX, y: e.layerY};
+      let realCoords = { x: e.layerX, y: e.layerY };
       let internalCoordinates = this.eventbus.send("real.coordinates.to.internal", realCoords);
-      // log("internalCoordinates", internalCoordinates);
-      // log("real Coordinates", realCoords);
-      this.eventbus.publish('log.debug', ["internalCoordinates", internalCoordinates, 0]);
-      this.eventbus.publish('log.debug', ["real Coordinates", { x: e.layerX, y: e.layerY }, 0]);
+      log("internalCoordinates", internalCoordinates);
+      log("real Coordinates", realCoords);
       this.board.placeStone(internalCoordinates, this.currentPlayerColor);
     });
     this.eventbus.on('player.made.a.move', (stone) => {
@@ -49,7 +47,7 @@ class Game {
     let clusteIndexesToMerge = [];
     let clusters = this.stoneClusters[stone.color];
     clusters.push({
-      stones: [{x: stone.x, y: stone.y}]
+      stones: [{ x: stone.x, y: stone.y }]
     });
     for (let i = 0; i < clusters.length; i++) {
       let cluster = clusters[i];
@@ -87,4 +85,4 @@ class Game {
   }
 }
 
-exports.Game = Game;
+module.exports.Game = Game;
