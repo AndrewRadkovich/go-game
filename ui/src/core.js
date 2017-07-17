@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .attach(new Rules())
         .attach(new Game(board));
 
-    // let boardStyle = boardHolder.style;
-    // boardStyle.maxHeight = boardStyle.maxWidth = width + "px";
-    // boardStyle.minHeight = boardStyle.minWidth = (width / 1.5) + "px";
+    let boardStyle = boardHolder.style;
+    boardStyle.maxHeight = boardStyle.maxWidth = width + "px";
+    boardStyle.minHeight = boardStyle.minWidth = (width / 1.5) + "px";
     canvas.height = canvas.width = width;
 
     canvas.addEventListener('click', (e) => eventbus.publish('board.clicked', {

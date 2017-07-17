@@ -1,6 +1,6 @@
 'use strict';
 
-import log from "./utils";
+import { log } from "./utils";
 
 class Game {
   constructor(board) {

@@ -1,3 +1,3 @@
-module.exports.log = function (obj) {
-  console.log(JSON.stringify(obj, null, 2));
+module.exports.log = function (message, obj) {
+  console.log(message + ": " + JSON.stringify(obj, null, 2));
 };

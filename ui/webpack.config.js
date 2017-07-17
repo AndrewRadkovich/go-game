@@ -2,22 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: {
-        board: ['./src/board.js'],
-        core: ['./src/core.js'],
-        entities: ['./src/entities.js'],
-        eventbus: ['./src/eventbus.js'],
-        game: ['./src/game.js'],
-        painter: ['./src/painter.js'],
-        rules: ['./src/rules.js'],
-        utils: ['./src/utils.js']
-    },
+    entry: './src/core.js',
     output: {
-        path: path.join(__dirname, "build"),
-        filename: "[name].bundle.js",
-        chunkFilename: "[id].chunk.js"
+        path: "./build",
+        filename: "bundle.js"
     },
-    devtool: 'source-map',
     module: {
         loaders: [{
             test: /\.js?$/,

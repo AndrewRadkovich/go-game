@@ -1,3 +1,5 @@
+'use strict';
+
 class Clusters {
   constructor() {
     this.clusters = {
